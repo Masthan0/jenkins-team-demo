@@ -36,5 +36,14 @@ pipeline {
         bat 'docker push masthandocker01/demo-app'
     }
 }
+	stage('System Check') {
+    steps {
+        bat 'whoami'
+        bat 'java -version'
+        bat 'mvn -v'
+        bat 'docker version'
+        bat 'where docker'
+    }
+}
     }
 }
