@@ -25,6 +25,12 @@ pipeline {
                 bat 'mvn package'
             }
         }
+	stage('Docker Login Check') {
+    steps {
+        bat 'docker logout'
+        bat 'docker login -u masthandocker01'
+    }
+}
 	stage('Build Docker Image') {
             steps {
                 bat 'docker build -t demo-app .'
