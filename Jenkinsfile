@@ -31,6 +31,20 @@ pipeline {
         bat 'docker login -u masthandocker01'
     }
 }
+	stage('Push Docker Image') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'docker-creds',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+
+            bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
+            bat 'docker tag demo-app %DOCKER_USER%/demo-app'
+            bat 'docker push %DOCKER_USER%/demo-app'
+        }
+    }
+}
 	stage('Build Docker Image') {
             steps {
                 bat 'docker build -t demo-app .'
