@@ -30,5 +30,11 @@ pipeline {
                 bat 'docker build -t demo-app .'
             }
         }
+	stage('Push Docker Image') {
+    steps {
+        bat 'docker tag demo-app masthandocker01/demo-app'
+        bat 'docker push masthandocker01/demo-app'
+    }
+}
     }
 }
