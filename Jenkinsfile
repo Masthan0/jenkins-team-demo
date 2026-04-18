@@ -49,9 +49,9 @@ pipeline {
 	stage('Deploy to AWS') {
     steps {
         bat '''
-        echo Starting deployment...
+        echo Deploying to AWS...
 
-        ssh -i "C:\\Users\\masth\\OneDrive\\Documents\\demo-key.pem" ^
+        ssh -i "C:\\jenkins\\keys\\demo-key.pem" ^
         -o StrictHostKeyChecking=no ^
         ubuntu@18.190.152.242 "bash deploy.sh"
         '''
