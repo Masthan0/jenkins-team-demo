@@ -46,7 +46,13 @@ pipeline {
                 }
             }
         }
-
+	stage('Deploy to AWS') {
+    steps {
+        sshagent(['ec2-key']) {
+            bat 'ssh -o StrictHostKeyChecking=no ubuntu@18.190.152.242 "bash deploy.sh"'
+        }
+    }
+}
         stage('System Check') {
             steps {
                 bat 'whoami'
