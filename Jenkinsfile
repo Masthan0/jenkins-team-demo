@@ -46,17 +46,6 @@ pipeline {
                 }
             }
         }
-	stage('Deploy to AWS') {
-    steps {
-        bat '''
-        echo Deploying to AWS...
-
-        ssh -i "C:\\jenkins\\keys\\demo-key.pem" ^
-        -o StrictHostKeyChecking=no ^
-        ubuntu@18.190.152.242 "bash deploy.sh"
-        '''
-    }
-}
         stage('System Check') {
             steps {
                 bat 'whoami'
