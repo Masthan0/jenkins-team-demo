@@ -48,12 +48,13 @@ pipeline {
         }
 	stage('Deploy to AWS') {
     steps {
-        sshagent(['ec2-key']) {
-            bat '''
-            echo Starting deployment...
-            ssh -v -o StrictHostKeyChecking=no ubuntu@18.190.152.242 "bash deploy.sh"
-            '''
-        }
+        bat '''
+        echo Starting deployment...
+
+        ssh -i "C:\\Users\\masth\\OneDrive\\Documents\\demo-key.pem" ^
+        -o StrictHostKeyChecking=no ^
+        ubuntu@18.190.152.242 "bash deploy.sh"
+        '''
     }
 }
         stage('System Check') {
